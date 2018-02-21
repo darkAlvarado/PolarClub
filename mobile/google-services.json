@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "188851033205",
+    "firebase_url": "https://polarclubteprow-2c701.firebaseio.com",
+    "project_id": "polarclubteprow-2c701",
+    "storage_bucket": "polarclubteprow-2c701.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188851033205:android:0fc1a17b8f733d94",
+        "android_client_info": {
+          "package_name": "com.club.jalvara2.polarclub2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188851033205-8oh3horufvkjqghobj66vhrl3gaccp0b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPQbRbJJUqaFDQktLv4ObA4TErxE18gTY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188851033205:android:27b39eff4ddbbfac",
+        "android_client_info": {
+          "package_name": "com.example.etienne.polarclubmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188851033205-06l92qfpipdasho3e0e913fdjvop91op.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.etienne.polarclubmobile",
+            "certificate_hash": "f0285ee8b0f84722aa3b8d0f92c2df45a56ec8c5"
+          }
+        },
+        {
+          "client_id": "188851033205-8oh3horufvkjqghobj66vhrl3gaccp0b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPQbRbJJUqaFDQktLv4ObA4TErxE18gTY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188851033205-8oh3horufvkjqghobj66vhrl3gaccp0b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
