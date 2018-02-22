@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:background="@drawable/circle3"
+                    android:padding="10dp"
+                    android:layout_margin="12dp"
+                    android:src="@drawable/ic_run" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sessionNom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text=""
+                        android:textSize="18dp"
+                        android:textColor="#ff6f00"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/sessionTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+                        android:textSize="16dp"
+                        android:text=""
+                        android:textColor="#00ccbe" />
+
+                    <TextView
+                        android:id="@+id/sessionStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:textSize="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text=""
+                        android:textColor="#00ccbe" />
+                </LinearLayout>
+            </LinearLayout>
+</LinearLayout>
+
+

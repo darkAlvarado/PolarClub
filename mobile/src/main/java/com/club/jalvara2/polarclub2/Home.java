@@ -29,11 +29,15 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View view) {
         Intent i;
         switch (view.getId()){
-            case R.id.card1 : i = new Intent(this, MainActivity.class);
+            case R.id.card1 : i = new Intent(this, AjouterActivity.class);
                 startActivity(i);
             break;
-            case R.id.card2 : i = new Intent(this, DisplaySessionActivity.class); break;
-            case R.id.card3 : i = new Intent(this, MainActivity.class); break;
+            case R.id.card2 : i = new Intent(this, MainActivity.class);
+                startActivity(i);
+            break;
+            case R.id.card3 : i = new Intent(this, SessionListActivity.class);
+                startActivity(i);
+            break;
             case R.id.card4 : i = new Intent(this, MainActivity.class); break;
         }
     }

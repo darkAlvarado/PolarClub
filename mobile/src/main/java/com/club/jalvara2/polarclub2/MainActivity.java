@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
     boolean ajout=false;
     Activity currentActivity=this;
     private TextView nomSession;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +38,11 @@ public class MainActivity extends Activity {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                         if (!ajout){
-                            /*
+
                             long prevId=(long)dataSnapshot.child("id").getValue();
                             //System.out.println(prevId);
                             //System.out.println(prevIdInt);
                             id=prevId+1;
-                            System.out.println(id);
                             String key = myRef.push().getKey();
                             myRef.child(key).child("id").setValue(id);
                             myRef.child(key).child("name").setValue(String.valueOf(nomSession.getText()));
@@ -50,10 +50,11 @@ public class MainActivity extends Activity {
                             myRef.child(key).child("time").setValue("60:00");
 
                             DatabaseReference newsession=database.getReference("id");
-                            newsession.child(String.valueOf(id)).child("coach").child("frequence").setValue(0);*/
+                            newsession.child(String.valueOf(id)).child("coach").child("frequence").setValue(0);
                             ajout=true;
-                            Intent intent = new Intent(currentActivity,DisplaySessionActivity.class);
-                            intent.putExtra("session",1);
+
+                            Intent intent = new Intent(currentActivity,SessionListActivity.class);
+
                             startActivity(intent);
                         }
 

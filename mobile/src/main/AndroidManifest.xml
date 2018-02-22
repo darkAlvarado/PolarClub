@@ -20,8 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".DisplaySessionActivity" />
-        <activity
-            android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".AjouterActivity" />
+        <activity android:name=".SessionListActivity"></activity>
     </application>
 
 </manifest>

@@ -1,78 +1,54 @@
-package com.club.jalvara2.polarclub2.fragments;
+package com.club.jalvara2.polarclub2;
 
-import android.app.FragmentManager;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.club.jalvara2.polarclub2.R;
-import com.club.jalvara2.polarclub2.utils.Session;
-import com.club.jalvara2.polarclub2.utils.SessionAdapter;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import static android.content.ContentValues.TAG;
-
-public class SesionFragment extends Fragment {
-
+public class SessionListActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private ArrayList<Session> sessions;
     RecyclerView recyclerSessions;
     DatabaseReference myRef;
 
-    public SesionFragment() {
-        // Required empty public constructor
-    }
-
-
-    public static SesionFragment newInstance(String param1, String param2) {
-        SesionFragment fragment = new SesionFragment();
-        Bundle args = new Bundle();
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null){
-
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_sesion, container, false);
+        setContentView(R.layout.activity_session_list);
 
         sessions = new ArrayList<>();
-        recyclerSessions = (RecyclerView) root.findViewById(R.id.recycler_sessions);
-        recyclerSessions.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerSessions = (RecyclerView) findViewById(R.id.recycler_sessions);
+        recyclerSessions.setLayoutManager(new LinearLayoutManager(this));
 
         final SessionAdapter adapter = new SessionAdapter(sessions);
 
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle args = new Bundle();
-                args.putInt("id", sessions.get(recyclerSessions.getChildAdapterPosition(view)).getId());
-                args.putString("pseudo", "jalava");
-                HeartFragment hf = new HeartFragment();
-                FragmentManager fm = getFragmentManager();
-                hf.setArguments(args);
-                fm.beginTransaction().replace(R.id.content_frame, hf).commit();
+                Toast.makeText(getApplicationContext(),
+                        "Selección: "+sessions.get
+                                (recyclerSessions.getChildAdapterPosition(view))
+                                .getId(),Toast.LENGTH_SHORT).show();
+                System.out.println("Selección: "+sessions.get
+                        (recyclerSessions.getChildAdapterPosition(view))
+                        .getId());
+                Intent intent = new Intent(SessionListActivity.this,DisplaySessionActivity.class);
+                long myId = Long.valueOf(sessions.get(recyclerSessions.getChildAdapterPosition(view)).getId());
+                System.out.println("Este es nuestro id " + myId);
+                intent.putExtra("session", myId);
+                startActivity(intent);
             }
         });
 
@@ -119,8 +95,5 @@ public class SesionFragment extends Fragment {
             }
         });
 
-
-        return root;
     }
-
 }

@@ -37,6 +37,8 @@ public class HeartFragment extends Fragment {
     private HeartView heartbeat;
     private Intent heartViewItem;
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
     private BroadcastReceiver br;
 
     private TextView labelMoyenne;
@@ -44,6 +46,9 @@ public class HeartFragment extends Fragment {
 
     Button btnPlus;
     Button btnMoins;
+
+    private String idV;
+    private String pseudo;
 
     public HeartFragment() {
     }
@@ -63,6 +68,8 @@ public class HeartFragment extends Fragment {
         btnPlus = (Button) rootView.findViewById(R.id.btnPlus);
         btnMoins = (Button) rootView.findViewById(R.id.btnMoins);
 
+        idV = String.valueOf(getArguments() != null ? getArguments().getInt("id") : 1);
+        pseudo = getArguments() != null ? getArguments().getString("pseudo") : "default";
 
         btnPlus.setOnClickListener(new View.OnClickListener(){
 
@@ -72,8 +79,6 @@ public class HeartFragment extends Fragment {
                 labelMoyenne.setText(String.valueOf(moyenne));
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("message");
-
-                myRef.setValue("Hello, World!");
 
                 // Read from the database
                 myRef.addValueEventListener(new ValueEventListener() {
@@ -102,9 +107,6 @@ public class HeartFragment extends Fragment {
                 labelMoyenne.setText(String.valueOf(moyenne));
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("message");
-
-                myRef.setValue("Hello, Atila");
-
                 // Read from the database
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -135,22 +137,28 @@ public class HeartFragment extends Fragment {
                 int y = val + 15;
                 long z = val - 20;
 
+                long a = val + 2;
+                int b = val + 4;
+                long c = val - 6;
 
+                long d = val + 12;
+                int e = val + 33;
+                long f = val - 30;
 
-                //DatabaseReference myRef = database.getReference("id/0/toto/frecuence");
-                //userNew.child("id").child("0").child("José").child("frecuence").setValue("10");
-                //userNew.child("id").child("0").child("Mexique").child("frecuence").setValue("10");
-                //DatabaseReference myRef2 = database.getReference("id/0/Atila/frecuence");
-                //myRef.setValue(String.valueOf(val));
-                //myRef2.setValue(String.valueOf(x));
-                // userNew.setValue("10");
+                DatabaseReference m = database.getReference("id");
 
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-               // DatabaseReference userNew = database.getReference();
+               // m.child(idV);
 
-                DatabaseReference myRef3 = database.getReference("id/0/tata/frequence");
-                DatabaseReference myRef4 = database.getReference("id/0/titin/frequence");
-
+                m.child(idV).child(pseudo).child("frequence").setValue(x);
+//
+//                DatabaseReference myRef3 = database.getReference("id/0/tata/frequence");
+//                DatabaseReference myRef4 = database.getReference("id/0/titin/frequence");
+//                DatabaseReference myRef5 = database.getReference("id/0/joseph/frequence");
+//                DatabaseReference myRef6 = database.getReference("id/0/jose/frequence");
+//                DatabaseReference myRef7 = database.getReference("id/0/alan/frequence");
+                DatabaseReference myRef8 = database.getReference("id/0/Bere/frequence");
+                DatabaseReference myRef9 = database.getReference("id/0/Otro/frequence");
+                DatabaseReference myRef10 = database.getReference("id/0/titin2/frequence");
                 /*
                 * id -> my bd
                 * 0 -> c'est l'id de session: ca va changer selon la session choisie
@@ -158,8 +166,14 @@ public class HeartFragment extends Fragment {
                 * Frecuence -> db
                 * */
 
-                myRef3.setValue(x);
-                myRef4.setValue(z);
+//                myRef3.setValue(x);
+//                myRef4.setValue(z);
+//                myRef5.setValue(y);
+//                myRef6.setValue(a);
+//                myRef7.setValue(b);
+                myRef8.setValue(c);
+                myRef9.setValue(d);
+                myRef10.setValue(e);
 
             }
         };

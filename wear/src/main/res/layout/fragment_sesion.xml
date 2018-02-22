@@ -6,27 +6,31 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="21dp"
-        android:text="Sessions en cours"
-        android:textAlignment="center" />
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="21dp"
+            android:text="Sessions en cours"
+            android:textSize="18dp"
+            android:textColor="#fff"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:textAlignment="center" />
 
-        <ListView
-            android:id="@+id/listSesion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycler_sessions">
+
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
-
 
 </RelativeLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.club.jalvara2.polarclub2.AjouterActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ajouter un sportif"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nom"
+            android:layout_margin="10dp"/>
+        <EditText
+            android:id="@+id/userNom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="15"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prenom"
+            android:layout_margin="10dp"/>
+        <EditText
+            android:id="@+id/userPrenom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="15"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pseudo"
+            android:layout_margin="10dp"/>
+        <EditText
+            android:id="@+id/userPseudo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="15"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mail"
+            android:layout_margin="10dp"/>
+        <EditText
+            android:id="@+id/userMail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="15"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Age"
+            android:layout_margin="10dp"/>
+        <EditText
+            android:id="@+id/userAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="15"/>
+
+        <Button
+            android:id="@+id/btn_ajouter_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@color/grenn"
+            android:padding="15dp"
+            android:text="Ajouter au sportif"
+            android:textAlignment="center" />
+    </LinearLayout>
+</LinearLayout>

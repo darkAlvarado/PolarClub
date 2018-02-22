@@ -30,7 +30,8 @@ public class DisplaySessionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_session);
 
         Intent intent = getIntent();
-        long idSession=intent.getLongExtra("session",0);
+        System.out.println("Imprimimos el valor " + intent.getLongExtra("session" ,-1));
+        long idSession=  intent.getLongExtra("session",-1);
 
 
         final TextView textViewId = findViewById(R.id.textViewId);
@@ -49,7 +50,6 @@ public class DisplaySessionActivity extends AppCompatActivity {
        // mListView = (ListView)findViewById(R.id.listview);
         //mListView.setAdapter(adapter);
         myRef = database.getReference("id").child(id);
-        System.out.println("Los usuarios " +users);
 
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -70,6 +70,7 @@ public class DisplaySessionActivity extends AppCompatActivity {
                         System.out.println("ok");
                         u.frequence=dataSnapshot.child("frequence").getValue(Long.class);
                         //adapter.notifyDataSetChanged();
+                        recyclerUsers.setAdapter(adapter);
                     }
                 }
             }
@@ -80,6 +81,7 @@ public class DisplaySessionActivity extends AppCompatActivity {
                     if (dataSnapshot.getKey().equals(u.pseudo)){
                         users.remove(u);
                        // adapter.notifyDataSetChanged();
+                        recyclerUsers.setAdapter(adapter);
                     }
                 }
             }
