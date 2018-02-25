@@ -37,17 +37,11 @@ public class SessionListActivity extends AppCompatActivity {
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),
-                        "Selección: "+sessions.get
-                                (recyclerSessions.getChildAdapterPosition(view))
-                                .getId(),Toast.LENGTH_SHORT).show();
-                System.out.println("Selección: "+sessions.get
-                        (recyclerSessions.getChildAdapterPosition(view))
-                        .getId());
                 Intent intent = new Intent(SessionListActivity.this,DisplaySessionActivity.class);
-                long myId = Long.valueOf(sessions.get(recyclerSessions.getChildAdapterPosition(view)).getId());
-                System.out.println("Este es nuestro id " + myId);
+                int myId = sessions.get(recyclerSessions.getChildAdapterPosition(view)).getId();
+                String cveS = sessions.get(recyclerSessions.getChildAdapterPosition(view)).getCve();
                 intent.putExtra("session", myId);
+                intent.putExtra("cveS", cveS);
                 startActivity(intent);
             }
         });
@@ -57,12 +51,14 @@ public class SessionListActivity extends AppCompatActivity {
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                sessions.add(new Session(dataSnapshot.child("active").getValue(Boolean.class),
-                        dataSnapshot.child("id").getValue(Integer.class),
-                        dataSnapshot.child("name").getValue(String.class),
-                        dataSnapshot.child("time").getValue(String.class)));
-                recyclerSessions.setAdapter(adapter);
+                if (dataSnapshot.child("active").getValue(Boolean.class)){
+                    sessions.add(new Session(dataSnapshot.child("active").getValue(Boolean.class),
+                            dataSnapshot.child("id").getValue(Integer.class),
+                            dataSnapshot.child("name").getValue(String.class),
+                            dataSnapshot.child("time").getValue(String.class),
+                            dataSnapshot.getKey()));
+                    recyclerSessions.setAdapter(adapter);
+                }
             }
 
             @Override

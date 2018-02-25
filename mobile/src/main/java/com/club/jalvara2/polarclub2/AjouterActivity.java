@@ -42,8 +42,6 @@ public class AjouterActivity extends AppCompatActivity {
                 final DatabaseReference myRef = database.getReference("users");
                 String pseudo = String.valueOf(userPseudo.getText().toString());
 
-                myRef.child(pseudo);
-
                 myRef.child(pseudo).child("age").setValue(Integer.parseInt(userAge.getText().toString()));
                 myRef.child(pseudo).child("nom").setValue(String.valueOf(userNom.getText().toString()));
                 myRef.child(pseudo).child("prenom").setValue(String.valueOf(userPrenom.getText().toString()));

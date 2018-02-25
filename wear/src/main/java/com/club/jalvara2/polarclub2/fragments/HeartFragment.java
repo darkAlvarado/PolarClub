@@ -43,9 +43,8 @@ public class HeartFragment extends Fragment {
 
     private TextView labelMoyenne;
     private int moyenne = 80;
-
-    Button btnPlus;
-    Button btnMoins;
+    private Button btnPlus;
+    private Button btnMoins;
 
     private String idV;
     private String pseudo;
@@ -134,43 +133,20 @@ public class HeartFragment extends Fragment {
                 mTextView.setText(String.valueOf(val));
 
                 long x = val + 5;
-                int y = val + 15;
-                long z = val - 20;
-
-                long a = val + 2;
-                int b = val + 4;
                 long c = val - 6;
-
                 long d = val + 12;
                 int e = val + 33;
-                long f = val - 30;
 
                 DatabaseReference m = database.getReference("id");
 
                // m.child(idV);
 
                 m.child(idV).child(pseudo).child("frequence").setValue(x);
-//
-//                DatabaseReference myRef3 = database.getReference("id/0/tata/frequence");
-//                DatabaseReference myRef4 = database.getReference("id/0/titin/frequence");
-//                DatabaseReference myRef5 = database.getReference("id/0/joseph/frequence");
-//                DatabaseReference myRef6 = database.getReference("id/0/jose/frequence");
-//                DatabaseReference myRef7 = database.getReference("id/0/alan/frequence");
+
                 DatabaseReference myRef8 = database.getReference("id/0/Bere/frequence");
                 DatabaseReference myRef9 = database.getReference("id/0/Otro/frequence");
                 DatabaseReference myRef10 = database.getReference("id/0/titin2/frequence");
-                /*
-                * id -> my bd
-                * 0 -> c'est l'id de session: ca va changer selon la session choisie
-                * tatan, titin -> pseudo saisi pour l'utilisateur
-                * Frecuence -> db
-                * */
 
-//                myRef3.setValue(x);
-//                myRef4.setValue(z);
-//                myRef5.setValue(y);
-//                myRef6.setValue(a);
-//                myRef7.setValue(b);
                 myRef8.setValue(c);
                 myRef9.setValue(d);
                 myRef10.setValue(e);

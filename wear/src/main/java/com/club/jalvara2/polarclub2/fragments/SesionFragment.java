@@ -1,16 +1,13 @@
 package com.club.jalvara2.polarclub2.fragments;
 
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.club.jalvara2.polarclub2.R;
 import com.club.jalvara2.polarclub2.utils.Session;
@@ -24,7 +21,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import static android.content.ContentValues.TAG;
 
 public class SesionFragment extends Fragment {
 

@@ -2,6 +2,7 @@ package com.club.jalvara2.polarclub2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,14 +16,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class DisplaySessionActivity extends AppCompatActivity {
+
+    private static final long START_TIME_IN_MILLIS = 3600000;
+    private CountDownTimer mCountDownTimer;
+    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
 
     private ArrayList<User> users;
     RecyclerView recyclerUsers;
    // ArrayAdapter<User> adapter;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
+    private TextView mTextViewCountDown;
+
+    private int idSession;
+    private String cveSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +40,13 @@ public class DisplaySessionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_session);
 
         Intent intent = getIntent();
-        System.out.println("Imprimimos el valor " + intent.getLongExtra("session" ,-1));
-        long idSession=  intent.getLongExtra("session",-1);
+        idSession = intent.getIntExtra("session",-1);
+        cveSession = intent.getStringExtra("cveS");
 
 
         final TextView textViewId = findViewById(R.id.textViewId);
         textViewId.setText("ID de la session: "+String.valueOf(idSession));
+        mTextViewCountDown = findViewById(R.id.mTextViewCountDown);
 
         users = new ArrayList<>();
         recyclerUsers = (RecyclerView) findViewById(R.id.recycler_n);
@@ -43,18 +54,13 @@ public class DisplaySessionActivity extends AppCompatActivity {
 
         final UserAdapter adapter = new UserAdapter(users);
 
+        startTimer();
 
-        //adapter=new ArrayAdapter<User>(this,android.R.layout.simple_list_item_1,users);
-
-        String id=String.valueOf(idSession);
-       // mListView = (ListView)findViewById(R.id.listview);
-        //mListView.setAdapter(adapter);
-        myRef = database.getReference("id").child(id);
+        myRef = database.getReference("id").child(String.valueOf(idSession));
 
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                System.out.println(dataSnapshot.getKey());
                 if (!dataSnapshot.getKey().equals("coach")){
                     users.add(new User(1, dataSnapshot.getKey(),dataSnapshot.child("frequence").getValue(Long.class)));
                     //adapter.notifyDataSetChanged();
@@ -96,5 +102,28 @@ public class DisplaySessionActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void startTimer() {
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
+            }
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+    }
+
+    private void updateCountDownText() {
+        myRef = database.getReference("sessions").child(cveSession);
+        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+        myRef.child("time").setValue(timeLeftFormatted);
+        mTextViewCountDown.setText(timeLeftFormatted);
     }
 }

@@ -4,16 +4,10 @@
     android:id="@+id/activity_main2"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:layout_gravity="top"
+    android:background="@drawable/ic_fondo"
     android:layout_height="match_parent"
     android:padding="10dp">
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_n">
-
-    </android.support.v7.widget.RecyclerView>
-
 
     <TextView
         android:id="@+id/textViewId"
@@ -23,8 +17,33 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:textAlignment="center"
-        android:text=""
+        android:text="Nom de la session"
         android:textStyle="bold"
         android:textSize="18dp"/>
+    <TextView
+        android:id="@+id/mTextViewCountDown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textAlignment="center"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        android:textColor="@color/pink"
+        android:layout_marginBottom="3dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/yellow"
+        android:layout_marginBottom="15dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler_n">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
 
 </LinearLayout>

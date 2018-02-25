@@ -9,15 +9,25 @@ public class Session {
     public int id;
     public String name;
     public String timeS;
+    public String cve;
 
     public Session() {
     }
 
-    public Session(boolean active, int id, String name, String timeS) {
+    public Session(boolean active, int id, String name, String timeS, String cve) {
         this.active = active;
         this.id = id;
         this.name = name;
         this.timeS = timeS;
+        this.cve = cve;
+    }
+
+    public String getCve() {
+        return cve;
+    }
+
+    public void setCve(String cve) {
+        this.cve = cve;
     }
 
     public boolean isActive() {
