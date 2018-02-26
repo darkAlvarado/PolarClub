@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.club.jalvara2.common.Session;
+
 import java.util.ArrayList;
 
 /**

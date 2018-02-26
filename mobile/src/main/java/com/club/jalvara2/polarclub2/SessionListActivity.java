@@ -3,12 +3,11 @@ package com.club.jalvara2.polarclub2;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
+import com.club.jalvara2.common.Session;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,6 +40,7 @@ public class SessionListActivity extends AppCompatActivity {
                 int myId = sessions.get(recyclerSessions.getChildAdapterPosition(view)).getId();
                 String cveS = sessions.get(recyclerSessions.getChildAdapterPosition(view)).getCve();
                 intent.putExtra("session", myId);
+
                 intent.putExtra("cveS", cveS);
                 startActivity(intent);
             }
@@ -64,10 +64,10 @@ public class SessionListActivity extends AppCompatActivity {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 for (Session se: sessions){
-                    se.name = dataSnapshot.child("name").getValue(String.class);
-                    se.active = dataSnapshot.child("active").getValue(Boolean.class);
-                    se.id = dataSnapshot.child("id").getValue(Integer.class);
-                    se.timeS = dataSnapshot.child("time").getValue(String.class);
+//                    se.name = dataSnapshot.child("name").getValue(String.class);
+//                    se.active = dataSnapshot.child("active").getValue(Boolean.class);
+//                    se.id = dataSnapshot.child("id").getValue(Integer.class);
+//                    se.timeS = dataSnapshot.child("time").getValue(String.class);
                     recyclerSessions.setAdapter(adapter);
                 }
             }

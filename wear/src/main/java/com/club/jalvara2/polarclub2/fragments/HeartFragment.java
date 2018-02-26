@@ -48,6 +48,7 @@ public class HeartFragment extends Fragment {
 
     private String idV;
     private String pseudo;
+    private final DatabaseReference m = database.getReference("id");
 
     public HeartFragment() {
     }
@@ -70,31 +71,15 @@ public class HeartFragment extends Fragment {
         idV = String.valueOf(getArguments() != null ? getArguments().getInt("id") : 1);
         pseudo = getArguments() != null ? getArguments().getString("pseudo") : "default";
 
+        m.child(idV).child(pseudo).child("media").setValue(80);
         btnPlus.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
                 moyenne += 5;
                 labelMoyenne.setText(String.valueOf(moyenne));
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("message");
 
-                // Read from the database
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        String value = dataSnapshot.getValue(String.class);
-                        Log.d(TAG, "Value is: " + value);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        // Failed to read value
-                        Log.w(TAG, "Failed to read value.", error.toException());
-                    }
-                });
+                m.child(idV).child(pseudo).child("media").setValue(moyenne);
             }
         });
 
@@ -104,24 +89,7 @@ public class HeartFragment extends Fragment {
             public void onClick(View v) {
                 moyenne -= 5;
                 labelMoyenne.setText(String.valueOf(moyenne));
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("message");
-                // Read from the database
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        String value = dataSnapshot.getValue(String.class);
-                        Log.d(TAG, "Value is: " + value);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        // Failed to read value
-                        Log.w(TAG, "Failed to read value.", error.toException());
-                    }
-                });
+                m.child(idV).child(pseudo).child("media").setValue(moyenne);
             }
 
 
@@ -133,24 +101,8 @@ public class HeartFragment extends Fragment {
                 mTextView.setText(String.valueOf(val));
 
                 long x = val + 5;
-                long c = val - 6;
-                long d = val + 12;
-                int e = val + 33;
-
-                DatabaseReference m = database.getReference("id");
-
                // m.child(idV);
-
-                m.child(idV).child(pseudo).child("frequence").setValue(x);
-
-                DatabaseReference myRef8 = database.getReference("id/0/Bere/frequence");
-                DatabaseReference myRef9 = database.getReference("id/0/Otro/frequence");
-                DatabaseReference myRef10 = database.getReference("id/0/titin2/frequence");
-
-                myRef8.setValue(c);
-                myRef9.setValue(d);
-                myRef10.setValue(e);
-
+                m.child(idV).child(pseudo).child("frequence").setValue(String.valueOf(x));
             }
         };
 

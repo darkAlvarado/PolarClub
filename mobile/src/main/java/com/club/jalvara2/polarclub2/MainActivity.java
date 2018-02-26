@@ -38,9 +38,9 @@ public class MainActivity extends Activity {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                         if (!ajout){
-
+                            System.out.println("Entro aquí");
                             long prevId=(long)dataSnapshot.child("id").getValue();
-                            //System.out.println(prevId);
+                            System.out.println( " Valor recogido "+ prevId);
                             //System.out.println(prevIdInt);
                             id=prevId+1;
                             String key = myRef.push().getKey();

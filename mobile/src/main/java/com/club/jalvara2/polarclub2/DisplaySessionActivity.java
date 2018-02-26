@@ -6,9 +6,9 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ListView;
 import android.widget.TextView;
 
+import com.club.jalvara2.common.User;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +33,7 @@ public class DisplaySessionActivity extends AppCompatActivity {
 
     private int idSession;
     private String cveSession;
+    private UserAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class DisplaySessionActivity extends AppCompatActivity {
         recyclerUsers = (RecyclerView) findViewById(R.id.recycler_n);
         recyclerUsers.setLayoutManager(new GridLayoutManager(this, 3));
 
-        final UserAdapter adapter = new UserAdapter(users);
+        adapter = new UserAdapter(users);
 
         startTimer();
 
@@ -62,7 +63,10 @@ public class DisplaySessionActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 if (!dataSnapshot.getKey().equals("coach")){
-                    users.add(new User(1, dataSnapshot.getKey(),dataSnapshot.child("frequence").getValue(Long.class)));
+                    users.add(new User(1,
+                            dataSnapshot.getKey(),
+                            dataSnapshot.child("media").getValue(Integer.class),
+                            dataSnapshot.child("frequence").getValue(String.class)));
                     //adapter.notifyDataSetChanged();
                     recyclerUsers.setAdapter(adapter);
                 }
@@ -70,11 +74,10 @@ public class DisplaySessionActivity extends AppCompatActivity {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
                 for (User u:users){
                     if (dataSnapshot.getKey().equals(u.pseudo)){
-                        System.out.println("ok");
-                        u.frequence=dataSnapshot.child("frequence").getValue(Long.class);
+                        u.frequence=dataSnapshot.child("frequence").getValue(String.class);
+                        u.media = dataSnapshot.child("media").getValue(Integer.class);
                         //adapter.notifyDataSetChanged();
                         recyclerUsers.setAdapter(adapter);
                     }

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.club.jalvara2.common.Session;
+import com.club.jalvara2.common.User;
 import com.club.jalvara2.polarclub2.R;
 
 import java.util.ArrayList;
@@ -15,18 +15,18 @@ import java.util.ArrayList;
  * Created by jalvara2 on 22/02/18.
  */
 
-public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.ViewHolderUsers>
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolderUsers>
             implements View.OnClickListener{
-    ArrayList<Session> sessions;
+    ArrayList<User> users;
     private View.OnClickListener listener;
 
-    public SessionAdapter(ArrayList<Session> sessions) {
-        this.sessions = sessions;
+    public UserAdapter(ArrayList<User> users) {
+        this.users = users;
     }
 
     @Override
     public ViewHolderUsers onCreateViewHolder(ViewGroup parent, int viewType) {
-        int layout = R.layout.sessions;
+        int layout = R.layout.users;
         View v = LayoutInflater.from(parent.getContext()).inflate(layout,null,false);
 
         v.setOnClickListener(this);
@@ -34,20 +34,14 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(SessionAdapter.ViewHolderUsers holder, int position) {
-        holder.sessionNom.setText("Nom de la session: " + sessions.get(position).getName());
-        String status = "";
-        if (sessions.get(position).isActive()){
-            status = "Estatus de la session: activée";
-        }else{
-            status = "Estatus de la session: desativée";
-        }
-        holder.sessionStatus.setText(status);
+    public void onBindViewHolder(UserAdapter.ViewHolderUsers holder, int position) {
+        holder.userPseudo.setText("-" + users.get(position).getPseudo());
     }
 
     @Override
     public int getItemCount() {
-        return sessions.size();
+        System.out.println("Tamaño " + users.size());
+        return users.size();
     }
 
     public void setOnClickListener(View.OnClickListener listener){
@@ -62,12 +56,10 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.ViewHold
     }
 
     public class ViewHolderUsers extends RecyclerView.ViewHolder {
-        TextView sessionNom;
-        TextView sessionStatus;
+        TextView userPseudo;
         public ViewHolderUsers(View itemView) {
             super(itemView);
-            sessionStatus = (TextView) itemView.findViewById(R.id.sessionStatus);
-            sessionNom = (TextView) itemView.findViewById(R.id.sessionNom);
+            userPseudo = (TextView) itemView.findViewById(R.id.userPseudo);
         }
     }
 }
